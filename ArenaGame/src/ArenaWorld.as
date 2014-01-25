@@ -8,6 +8,7 @@ package
 		public function ArenaWorld() 
 		{
 			FP.screen.color = 0xC0C0C0;
+			add(new Enemy(FP.halfWidth / 2, FP.halfHeight / 2));
 			add(new Player(FP.halfWidth, FP.halfHeight));
 			
 		}

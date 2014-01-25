@@ -15,7 +15,7 @@ package
 		[Embed(source = "res/swing.png")]private const SWORDMAN: Class;
 		public var sprSwordMan:Spritemap = new Spritemap(SWORDMAN, 256, 256);
 		[Embed(source = "res/sword_hitbox_strip.png")] private const SWORD_PIXELMAP:Class;
-		
+		[Embed(source = "res/rectangle.png")] private const RECTANGLE:Class;
 
 		public var speed : Number;
 		
@@ -34,14 +34,19 @@ package
 			
 			sprSwordMan.add("attack", [0, 1, 2, 3, 3, 2, 1, 0], .25, false);
 			graphic = sprSwordMan;
+			
 		
 			sprSwordMan.originX = 129; sprSwordMan.originY = 142;
 			hitboxMap.originX = 129; hitboxMap.originY = 142;
 			
+			(graphic as Image).centerOO();
+			
 			for (var i:int = 0; i < 36; i++) {
 				hitboxMap.frame = i;
-				pixelMaps[i] = new Pixelmask(hitboxMap.getBuffer());
+				pixelMaps[i] = new Pixelmask(hitboxMap.getBuffer(), -128, -128);
 			}
+			
+			//this.mask = new Pixelmask(RECTANGLE, -16, -32);
 			
 		}
 		
@@ -60,8 +65,16 @@ package
 			
 			var frameNumber:int = (angle % 360) / 10;
 			hitboxMap.frame = frameNumber;
-			//graphic = hitboxMap;
-			this.mask = pixelMaps[frameNumber];		
+			
+			this.mask = pixelMaps[frameNumber];
+			
+			if (collide("enemy", x, y)) {
+				FP.screen.color = 0xF0FF0F;
+			}
+			else {
+				FP.screen.color = 0xFFFFFF;
+			}
+			
 			super.update();
 		}
 		
