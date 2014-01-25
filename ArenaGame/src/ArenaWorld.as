@@ -8,7 +8,7 @@ package
 		public function ArenaWorld() 
 		{
 			FP.screen.color = 0xC0C0C0;
-			add(new Player(100, 100));
+			add(new Player(FP.halfWidth, FP.halfHeight));
 		}
 		
 		override public function update():void 
