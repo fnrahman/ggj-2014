@@ -18,10 +18,9 @@ package
 		
 
 		public var speed : Number;
-		public var img: Image;
 		
 		public var hitboxMap:Spritemap = new Spritemap(SWORD_PIXELMAP, 256, 256);
-		public var pixelMaps = new Array(36);
+		public var pixelMaps : Array = new Array(36);
 		
 		public function Player(x:int, y:int) 
 		{
@@ -37,8 +36,6 @@ package
 			graphic = sprSwordMan;
 		
 			sprSwordMan.originX = 129; sprSwordMan.originY = 142;
-			graphic = img = new Image(STILL);
-			img.originX = 129; img.originY = 142;
 			hitboxMap.originX = 129; hitboxMap.originY = 142;
 			
 			for (var i:int = 0; i < 36; i++) {
@@ -48,7 +45,7 @@ package
 			
 		}
 		
-		}
+		
 		override public function update():void 
 		{
 			if (Input.check("UP")) { y -= speed; }
@@ -63,11 +60,11 @@ package
 			
 			var frameNumber:int = (angle % 360) / 10;
 			hitboxMap.frame = frameNumber;
-			graphic = hitboxMap;
+			//graphic = hitboxMap;
 			this.mask = pixelMaps[frameNumber];		
 			super.update();
 		}
 		
 	}
-
+	
 }
