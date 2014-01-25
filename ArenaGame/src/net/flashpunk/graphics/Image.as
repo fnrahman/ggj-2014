@@ -244,6 +244,10 @@ package net.flashpunk.graphics
 			if (_tint) _buffer.colorTransform(_bufferRect, _tint);
 		}
 		
+		public function getBuffer():BitmapData {
+			return _buffer;
+		}
+		
 		/**
 		 * Clears the image buffer.
 		 */
