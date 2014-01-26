@@ -9,7 +9,7 @@ package ui
 		public var str:String;
 		public var txt:Text;
 		public var normalColor:uint = 0xFFFFFF;
-		public var hoverColor:uint = 0x000000;
+		public var hoverColor:uint = 0xFF0000;
 		private var callback:Function;
 		private var options:Object = { size:32, color:"white" };
 		[Embed(source = "../res/OptimusPrincepsSemiBold.ttf", embedAsCFF="false", fontFamily="Opt Font")] private const MY_FONT:Class;

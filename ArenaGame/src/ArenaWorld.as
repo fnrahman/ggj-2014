@@ -2,6 +2,7 @@ package
 {
 	import net.flashpunk.World;
 	import net.flashpunk.FP;
+	import HPLabel;
 	public class ArenaWorld extends World
 	{
 		private var player:Player;
@@ -17,6 +18,11 @@ package
 			add(player);
 			enemy = new Enemy(FP.halfWidth / 2, FP.halfHeight / 2); 
 			add(enemy);
+			var yourHP:HPLabel = new HPLabel(0, 0, player, "Your");
+			var cpuHP:HPLabel = new HPLabel(0, 0, enemy, "Enemy");
+			cpuHP.x = FP.width - cpuHP.width;
+			add(yourHP);
+			add(cpuHP);
 			
 		}
 		
