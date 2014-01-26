@@ -14,12 +14,14 @@ package
 		private var img:Image;
 		private var anti_type : String;
 		
+		private var x_start : int, y_start : int;
+		
 		public function Arrow(x:int, y:int, shootAngle:Number, parent:Combatant)
 		{
 			
 			this.parent = parent;
-			this.x = x;
-			this.y = y;
+			this.x = this.x_start = x;
+			this.y = this.y_start = y;
 			graphic = img = new Image(ARROW);
 			img.originX = 86;
 			img.originY = 49;
@@ -30,6 +32,8 @@ package
 			speed = 10.0;
 			this.layer = 10;
 			
+			
+			
 			type = (parent is Player) ? "arrow" : "enemy_arrow";
 			anti_type = (parent is Player) ? "enemy" : "player";
 		}
@@ -39,12 +43,23 @@ package
 			x += speed * Math.cos((currentAngle) * Math.PI / 180);
 			y -= speed * Math.sin((currentAngle) * Math.PI / 180);
 			
-			if (x < (0-img.width) || x > (FP.width+img.width) || y < (0-img.height) || y > (FP.height+img.height)) {
+			if (x < (0 - img.width) || x > (FP.width + img.width) || y < (0 - img.height) || y > (FP.height + img.height)) {
+				if (parent is Player) {
+					var temp1 : Player = parent as Player;
+					temp1.averageShotDistance += FP.distance(x_start, y_start, x, y);
+					temp1.averageShotDistance /= temp1.numShots;
+				}
 				world.remove(this);
 			}
 			
 			if (collide(anti_type, x, y)) {
-				FP.console.log("Shot the "+type);
+				FP.console.log("Shot the " + type);
+				if (parent is Player) {
+					(parent as Player).successfulShots += 1;
+					var temp2 : Player = parent as Player;
+					temp2.averageShotDistance += FP.distance(x_start, y_start, x, y);
+					temp2.averageShotDistance /= temp2.numShots;
+				}
 				world.remove(this);
 			}
 		}

@@ -26,6 +26,8 @@ package
 			this.y = y;
 			this.speed = 2;
 			this.aim = 20;
+			
+
 
 			//(graphic as Image).centerOO();
 			//this.mask = new Pixelmask(RECTANGLE, -16, -32);
@@ -45,6 +47,7 @@ package
 				trace("Can't find target");
 				return; //player still has not been added to the player
 			}
+			(this.graphic as Image).color = 0xFF0000;
 			seek();
 			swordAttack();
 			bowAttack();

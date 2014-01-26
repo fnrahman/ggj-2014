@@ -22,6 +22,15 @@ package
 		//public var currentWeapon: Spritemap;
 		
 		
+		//Stat tracking
+		public var numSwipes : int;
+		public var successfulSwipes : int;
+		public var numShots : int;
+		public var successfulShots : int;
+		public var distanceMoved : int;
+		public var numSwitches : int;
+		public var averageShotDistance : Number = 0;
+		
 		public var grazeBox : GrazeBox;
 		
 		public function Player(x:int, y:int) 
@@ -58,12 +67,13 @@ package
 		
 		override public function update():void 
 		{
-			if (Input.check("UP")) { y -= speed; }
-			if (Input.check("DOWN")) { y += speed; }
-			if (Input.check("LEFT")) { x -= speed; }
-			if (Input.check("RIGHT")) { x += speed; }
+			if (Input.check("UP")) { y -= speed; distanceMoved += speed; }
+			if (Input.check("DOWN")) { y += speed; distanceMoved += speed;  }
+			if (Input.check("LEFT")) { x -= speed; distanceMoved += speed;  }
+			if (Input.check("RIGHT")) { x += speed; distanceMoved += speed;  }
 			if (Input.released(Key.SPACE)) {
 				currentWeaponIndex++;
+				numSwitches++;
 				if (currentWeaponIndex % 2 == 0)
 				{
 					sprMan.play("idleSword",false );
@@ -81,16 +91,19 @@ package
 					
 					sprMan.play("attack", true);
 					sword.swinging = true;
+					numSwipes += 1;
 				}else 
 				{
-					
 					//world.add(new Arrow(x, y, angle + ((2 * Math.random() * aim)  - aim),this));
 					sprMan.play("shoot", true);
+					numShots += 1;
 				}
 			}
 
 			this.angle = FP.angle(x, y, Input.mouseX, Input.mouseY);
 			sprMan.angle = this.angle;
+			
+			FP.console.log("Average shot distance: " + this.averageShotDistance);
 			
 			super.update();
 		}

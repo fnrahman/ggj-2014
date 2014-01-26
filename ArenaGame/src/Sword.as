@@ -63,6 +63,7 @@ package
 			if (this.swinging && this.type == "sword" && this.collide(anti_type, x, y)) {
 				FP.console.log("Hit enemy");
 				this.swinging = false;
+				(parent as Player).successfulSwipes += 1;
 			}
 			//Eventually this statement will be unnecessary
 			else if (this.swinging && this.type == "enemy_sword" && this.collide(anti_type, x, y)) {
