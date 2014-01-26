@@ -28,9 +28,10 @@ package
 		public var angle : Number = 0;
 		
 		//Stats
+		public var hp: Number = 100;
 		public var speed : Number = 0;
 		public var aim : Number = 0; //Half-Angle of cone of precision
-		public var strength : Number = 0;
+		public var strength : Number = 50;
 		
 		public var currentWeaponIndex: Number; //even=swordman; odd=bowman
 		public var sword : Sword;
