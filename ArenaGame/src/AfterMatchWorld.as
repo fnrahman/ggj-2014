@@ -19,12 +19,22 @@ package
 			var nextString:String;
 			var nextFunction:Function;
 			if (MatchData.playerWin) {
-				headerString = "You have survived Round " + Main.currentRound;
-				nextString = "Next Round";
-				nextFunction = function():void {
-					Main.currentRound += 1;
-					FP.world = new ArenaWorld();
-					trace("MOVE TO ROUND " + Main.currentRound);
+				trace(Main.currentRound / Main.ROUNDS);
+				if (Main.currentRound == Main.ROUNDS) {
+					headerString = "You have survived all challengers!\nYou have secured your freedom.";
+					nextString = "You win!";
+					nextFunction = function():void {
+						FP.world = new MenuWorld();
+						Main.currentRound = 1;
+					}
+				} else {
+				
+					headerString = "You have survived Round " + Main.currentRound;
+					nextString = "Next Round";
+					nextFunction = function():void {
+						Main.currentRound += 1;
+						FP.world = new ArenaWorld();
+					}
 				}
 				if (MatchData.numShots != 0) {
 					aimChange = MatchData.successfulShots / (.12 * MatchData.numShots);

@@ -6,6 +6,7 @@ package
 	import net.flashpunk.Mask;
 	import net.flashpunk.masks.Pixelmask;
 	import net.flashpunk.FP;
+	import net.flashpunk.Sfx;
 	
 	/**
 	 * ...
@@ -25,6 +26,9 @@ package
 		public var swinging : Boolean = false;
 		public var anti_type : String;
 		public var damage: Number;
+		
+		[Embed(source="res/Cheer.mp3")] private const CHEER:Class;
+		public var sfxCheer:Sfx;
 		
 		public function Sword(parent:Combatant) 
 		{
@@ -52,6 +56,7 @@ package
 				type = "enemy_sword";
 				anti_type = "player";
 			}
+			sfxCheer = new Sfx(CHEER);
 		}
 		
 		override public function update():void 
@@ -71,6 +76,8 @@ package
 				(parent as Player).successfulSwipes += 1;
 				combatant.hp -= parent.strength;
 				world.add(new Indicator(combatant.x, combatant.y, damage));
+				sfxCheer.stop();
+				sfxCheer.play();
 
 			}
 			//Eventually this statement will be unnecessary
@@ -79,6 +86,8 @@ package
 				FP.console.log("Enemy hit you!");
 				combatant.hp -= parent.strength;
 				world.add(new Indicator(combatant.x, combatant.y, damage));
+				sfxCheer.stop();
+				sfxCheer.play();
 
 			}
 			else if (this.type == "enemy_sword" && this.collide("grazeBox", x, y)) {

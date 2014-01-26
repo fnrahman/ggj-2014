@@ -7,7 +7,7 @@ package
 	[SWF(width="832", height="640")]
 	public class Main extends Engine
 	{
-		public static const ROUNDS:int = 5;
+		public static const ROUNDS:int = 2;
 		public static var currentRound:int = 1;
 		
 		public function Main()

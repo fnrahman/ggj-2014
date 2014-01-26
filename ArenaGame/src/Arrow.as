@@ -3,6 +3,7 @@ package
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.FP;
+	import net.flashpunk.Sfx;
 	
 	public class Arrow extends Entity
 	{
@@ -17,10 +18,11 @@ package
 		private var x_start : int, y_start : int;
 		
 		public var damage : Number;
-		
+		[Embed(source="res/Cheer.mp3")] private const CHEER:Class;
+		public var sfxCheer:Sfx;
 		public function Arrow(x:int, y:int, shootAngle:Number, parent:Combatant)
 		{
-			
+			sfxCheer = new Sfx(CHEER);
 			this.parent = parent;
 			this.x = this.x_start = x;
 			this.y = this.y_start = y;
@@ -59,6 +61,8 @@ package
 			if (combatant) {
 				combatant.hp -= parent.strength;
 				world.add(new Indicator(combatant.x, combatant.y, damage));
+				sfxCheer.stop();
+				sfxCheer.play();
 				FP.console.log("Shot the " + type);
 				if (parent is Player) {
 					(parent as Player).successfulShots += 1;
