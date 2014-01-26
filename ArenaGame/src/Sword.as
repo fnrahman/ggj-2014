@@ -70,12 +70,16 @@ package
 				this.swinging = false;
 				(parent as Player).successfulSwipes += 1;
 				combatant.hp -= parent.strength;
+				world.add(new Indicator(combatant.x, combatant.y, damage));
+
 			}
 			//Eventually this statement will be unnecessary
 			else if (this.swinging && this.type == "enemy_sword" && combatant) {
 				this.swinging = false;
 				FP.console.log("Enemy hit you!");
 				combatant.hp -= parent.strength;
+				world.add(new Indicator(combatant.x, combatant.y, damage));
+
 			}
 			else if (this.type == "enemy_sword" && this.collide("grazeBox", x, y)) {
 				//FP.console.log("Enemy grazed you!");
