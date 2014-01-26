@@ -61,7 +61,7 @@ package
 			swing_sword += FP.elapsed;
 			if (swing_sword < 0.5) return;
 			swing_sword = 0;
-			if (this.canAttack && FP.distance(target.x, target.y, this.x, this.y) < sword_border && Math.random() < 0.5) {
+			if (this.canAttack && FP.distance(target.x, target.y, this.x, this.y) < sword_border && Math.random() < 0.66) {
 				FP.console.log("Trying to swing my sword");
 				this.sword.swinging = true;
 				this.sprMan.play("attack", true);
@@ -73,7 +73,7 @@ package
 			shoot_bow += FP.elapsed;
 			if (shoot_bow < 1) return;
 			shoot_bow = 0;
-			if (FP.distance(target.x, target.y, this.x, this.y) > bow_border && Math.random() < 0.5) {
+			if (FP.distance(target.x, target.y, this.x, this.y) > bow_border && Math.random() < 0.66) {
 				world.add(new Arrow(x, y, angle + ((2 * Math.random() * aim)  - aim), this));
 				sprMan.play("shoot", true);
 			}

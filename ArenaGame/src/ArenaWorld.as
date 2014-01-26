@@ -1,5 +1,6 @@
 package  
 {
+	import net.flashpunk.Sfx;
 	import net.flashpunk.World;
 	import net.flashpunk.FP;
 	import HPLabel;
@@ -11,6 +12,9 @@ package
 		private var winConstant:Number = 2;
 		public var enemyHealth: Array = new Array (100, 160, 240, 300, 350);
 		
+		[Embed(source = "res/15_Thousand_People.mp3")] private const CROWD:Class;
+		
+		public var sfxCrowd:Sfx;
 		
 		public function ArenaWorld() 
 		{
@@ -23,15 +27,10 @@ package
 
 			player.strength = MatchData.strength;
 			
-			if (MatchData.numShots != 0) {
-				MatchData.aim -= MatchData.successfulShots / (.12 * MatchData.numShots);
-				if (MatchData.aim < 2) {
-				MatchData.aim = 2;	
-				}
-			}
+			
 			
 			player.aim = MatchData.aim;
-			MatchData.speed += MatchData.distanceMoved * .0001;
+			
 			player.speed = MatchData.speed;
 			player.hp = enemyHealth[Main.currentRound-1];
 			add(player);
@@ -51,6 +50,9 @@ package
 			add(yourHP);
 			add(cpuHP);
 			
+			sfxCrowd = new Sfx(CROWD);
+			sfxCrowd.loop();
+			sfxCrowd.play(0.5);
 		}
 		
 		override public function update():void 
@@ -66,6 +68,7 @@ package
 				}
 				
 			if (roundOver) {
+				sfxCrowd.stop();
 				winTimer += FP.elapsed;
 				if (winTimer >= winConstant) {
 					MatchData.numSwipes = player.numSwipes;
