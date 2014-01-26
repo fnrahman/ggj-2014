@@ -60,12 +60,26 @@ package
 
 			this.angle = 0;
 			this.sword = new Sword(this);
+
 			
 			sprMan.originX = 129; sprMan.originY = 142;
+
 			
 			
 			//(graphic as Image).centerOO();
 			
+		}
+		
+		override public function added():void 
+		{
+			super.added();
+			this.world.add(this.sword);
+			//this.sword.visible = false;
+			this.sprSwordMan.callback = hideSwordHitBox;
+		}
+		
+		public function hideSwordHitBox() : void {
+			this.sword.swinging = false;
 		}
 		
 		
@@ -92,15 +106,18 @@ package
 			
 			
 		
+
 			if (Input.mouseReleased) {
 				if (current % 2 == 0) {
 					
-				sprMan.play("attack", true);
+					sprMan.play("attack", true);
+					sword.swinging = true;
 				}else 
 				{
-				sprMan.play("shoot", true);
+					sprMan.play("shoot", true);
 				}
 			}
+
 
 			
 			sprMan.angle = FP.angle(x, y, Input.mouseX, Input.mouseY) + 270;
@@ -108,12 +125,13 @@ package
 			
 			
 			
-			if (Input.mouseReleased && sword.collide("enemy", x, y)) {
+/*			if (Input.mouseReleased && sword.collide("enemy", x, y)) {
 				FP.screen.color = 0xF0FF0F;
 			}
 			else {
 				FP.screen.color = 0xFFFFFF;
-			}
+			}*/
+			//if (sword.collide("enemy", x, y)) trace("blah");
 			
 			super.update();
 		}

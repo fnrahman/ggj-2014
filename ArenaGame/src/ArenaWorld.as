@@ -11,7 +11,6 @@ package
 			add(new Enemy(FP.halfWidth / 2, FP.halfHeight / 2));
 			var player : Player = new Player(FP.halfWidth, FP.halfHeight)
 			add(player)
-			add(new Sword(player));
 			
 		}
 		

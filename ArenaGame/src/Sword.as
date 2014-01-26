@@ -5,6 +5,7 @@ package
 	import net.flashpunk.graphics.Spritemap;
 	import net.flashpunk.Mask;
 	import net.flashpunk.masks.Pixelmask;
+	import net.flashpunk.FP;
 	
 	/**
 	 * ...
@@ -20,6 +21,8 @@ package
 		public var pixelMaps : Array = new Array(36);
 		
 		public var parent : Combatant;
+		
+		public var swinging : Boolean = false;
 		
 		public function Sword(parent:Combatant) 
 		{
@@ -48,7 +51,16 @@ package
 			var index : int = (parent.angle % 360) / 10;
 			hitboxMap.frame = index;
 			//mask = pixelMasks[index];
-			if (this.collide("enemy", x, y)) trace("blah");
+			
+			if (this.swinging && this.collide("enemy", x, y)) {
+				FP.screen.color = 0x00FF00;
+			}
+			else {
+				FP.screen.color = 0xFFFFFF;
+			}
+			
+			
+			
 		}
 		
 	}
