@@ -7,10 +7,6 @@ package
 	import net.flashpunk.masks.Pixelmask;
 	import net.flashpunk.FP;
 	
-	/**
-	 * ...
-	 * @author ...
-	 */
 	public class Enemy extends Combatant
 	{
 		[Embed(source = "res/rectangle.png")] public const RECTANGLE:Class;
@@ -54,20 +50,6 @@ package
 			//this.angle = FP.angle(x, y, target.x, target.y) + 270;
 		}
 		
-		private var seek_update : Number = 0;
-		public function seek():void {
-			seek_update += FP.elapsed;
-			if (seek_update < 0.01) return;
-			seek_update = 0;
-			var creepy_angle : Number = (FP.angle(x, y, target.x, target.y)) % 360;
-			var actual_angle : Number = ((2 * Math.random() * aim)  - aim) + creepy_angle;
-			var multiplier : int = Math.tan(actual_angle * Math.PI / 180) > 0 ? -1 : -1;
-			this.x -= multiplier * (this.speed * Math.cos(actual_angle * Math.PI / 180));
-			this.y += multiplier * (this.speed * Math.sin(actual_angle * Math.PI / 180));
-			this.angle = actual_angle;
-			//FP.console.log(actual_angle);
-		}
-		
 		private var swing_sword : Number = 0;
 		public function swordAttack() : void {
 			swing_sword += FP.elapsed;
@@ -90,7 +72,31 @@ package
 				sprMan.play("shoot", true);
 			}
 		}
-		
+		private var seek_update:Number = 0;
+		private var timeToSeek:Number = 0.25;
+		private var target_angle:Number = 0;
+		private var turning_angle:Number = 10;
+		private var motion_angle:Number = angle;
+		public function seek():void {
+			seek_update += FP.elapsed;
+			if (seek_update > timeToSeek) {
+				seek_update -= timeToSeek;
+				var creepy_angle : Number = (FP.angle(x, y, target.x, target.y)) % 360;
+				target_angle = ((2 * Math.random() * aim)  - aim) + creepy_angle;
+				timeToSeek = Math.random();
+			}
+			var sign:Number = (target_angle - motion_angle);
+			var amount:Number = Math.min(turning_angle, Math.abs(sign));
+			if (sign >= 0) {
+				motion_angle += amount;
+			} else if (sign < 0) {
+				motion_angle -= amount;
+			}
+			
+			x += (speed * Math.cos(motion_angle * Math.PI / 180));
+			y -= (speed * Math.sin(motion_angle * Math.PI / 180));
+			//FP.console.log(actual_angle);
+			angle = FP.angle(x, y, target.x, target.y);
+		}
 	}
-
 }
