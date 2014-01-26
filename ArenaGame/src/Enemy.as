@@ -9,7 +9,6 @@ package
 	
 	public class Enemy extends Combatant
 	{
-		[Embed(source = "res/rectangle.png")] public const RECTANGLE:Class;
 		
 		//States
 		public static const SEEK : int = 0, DESTROY : int = 1;
@@ -28,6 +27,7 @@ package
 			this.speed = 2;
 			this.aim = 20;
 			
+			(this.graphic as Image).color = Math.random() * 0xFFFFFF;
 
 
 			//(graphic as Image).centerOO();
@@ -48,7 +48,6 @@ package
 				trace("Can't find target");
 				return; //player still has not been added to the player
 			}
-			(this.graphic as Image).color = 0xFF0000;
 			seek();
 			swordAttack();
 			bowAttack();
@@ -61,7 +60,7 @@ package
 			swing_sword += FP.elapsed;
 			if (swing_sword < 0.5) return;
 			swing_sword = 0;
-			if (this.canAttack && FP.distance(target.x, target.y, this.x, this.y) < sword_border && Math.random() < 0.66) {
+			if (this.canAttack && FP.distance(target.x, target.y, this.x, this.y) < sword_border && Math.random() < 1) {
 				FP.console.log("Trying to swing my sword");
 				this.sword.swinging = true;
 				this.sprMan.play("attack", true);
@@ -73,7 +72,7 @@ package
 			shoot_bow += FP.elapsed;
 			if (shoot_bow < 1) return;
 			shoot_bow = 0;
-			if (FP.distance(target.x, target.y, this.x, this.y) > bow_border && Math.random() < 0.66) {
+			if (FP.distance(target.x, target.y, this.x, this.y) > bow_border && Math.random() < 1) {
 				world.add(new Arrow(x, y, angle + ((2 * Math.random() * aim)  - aim), this));
 				sprMan.play("shoot", true);
 			}

@@ -21,7 +21,7 @@ package
 			if (MatchData.playerWin) {
 				trace(Main.currentRound / Main.ROUNDS);
 				if (Main.currentRound == Main.ROUNDS) {
-					headerString = "You have survived all challengers!\nYou have secured your freedom.";
+					headerString = "You have survived all challengers!";
 					nextString = "You win!";
 					nextFunction = function():void {
 						FP.world = new MenuWorld();
@@ -45,7 +45,7 @@ package
 				}
 				speedChange =MatchData.distanceMoved * .0001;
 				MatchData.speed += speedChange;
-				strengthChange = (MatchData.successfulSwipes * 5) + (2 * MatchData.successfulShots);
+				strengthChange = (MatchData.successfulSwipes * 3) + (1 * MatchData.successfulShots);
 				MatchData.strength +=strengthChange;
 			} else {
 				headerString = "Game Over";
@@ -55,7 +55,7 @@ package
 					Main.currentRound = 1;
 				}
 			}
-			var header:Label = new Label(100, 100, headerString, { align:"center", size:"36", width:"600", wordWrap:"true" } );
+			var header:Label = new Label(100, 50, headerString, { align:"center", size:"36", width:"600", wordWrap:"true" } );
 			header.x = FP.halfWidth - header.halfWidth;
 			var nextBtn:Button = new Button(FP.halfWidth, FP.height - 100, nextString, nextFunction, { size:"32", align:"center" } );
 			nextBtn.x = FP.halfWidth - nextBtn.halfWidth;

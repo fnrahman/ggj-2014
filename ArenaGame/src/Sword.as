@@ -76,6 +76,7 @@ package
 				(parent as Player).successfulSwipes += 1;
 				combatant.hp -= parent.strength;
 				if (combatant.hp < 0) combatant.hp = 0;
+				world.add(new Indicator(combatant.x, combatant.y, parent.strength));
 				sfxCheer.stop();
 				sfxCheer.play();
 
@@ -86,6 +87,7 @@ package
 				FP.console.log("Enemy hit you!");
 				combatant.hp -= parent.strength;
 				if (combatant.hp < 0) combatant.hp = 0;
+				world.add(new Indicator(combatant.x, combatant.y, parent.strength));
 				sfxCheer.stop();
 				sfxCheer.play();
 

@@ -25,7 +25,7 @@ package
 		override public function update():void 
 		{
 			super.update();
-			text.text = owner + " HP: " + parent.hp;
+			text.text = owner + " HP: " + Math.floor(parent.hp);
 		}
 		
 	}
