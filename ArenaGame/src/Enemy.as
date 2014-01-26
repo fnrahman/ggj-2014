@@ -17,6 +17,7 @@ package
 		public var target : Player;
 		public var sword_border:Number = 160;
 		public var bow_border:Number = 300;
+		
 		public function Enemy(x:Number=0, y:Number=0) 
 		{
 			super(x, y);

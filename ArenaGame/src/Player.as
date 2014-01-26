@@ -36,7 +36,7 @@ package
 		
 		public function Player(x:int, y:int) 
 		{
-			//aim = 20; // CHANGE THIS LATER
+			aim = 30; // CHANGE THIS LATER
 			super(x, y);
 			type = "player";
 			name = "player";
@@ -108,7 +108,7 @@ package
 			this.angle = FP.angle(x, y, Input.mouseX, Input.mouseY);
 			sprMan.angle = this.angle;
 			
-			FP.console.log("Average shot distance: " + this.averageShotDistance);
+			FP.console.log(averageShotDistance);
 			
 			super.update();
 		}
