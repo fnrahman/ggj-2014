@@ -29,7 +29,7 @@ package
 		
 		//Stats
 		public var speed : Number = 0;
-		public var aim : Number = 0; //Angle of cone of precision
+		public var aim : Number = 0; //Half-Angle of cone of precision
 		public var strength : Number = 0;
 		
 		public var currentWeaponIndex: Number; //even=swordman; odd=bowman

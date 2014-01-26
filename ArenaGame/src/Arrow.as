@@ -29,6 +29,8 @@ package
 			img.angle = currentAngle;
 			speed = 10.0;
 			this.layer = 10;
+			
+			type = (parent is Player) ? "arrow" : "enemy_arrow";
 		}
 		
 		override public function update():void 
@@ -39,6 +41,8 @@ package
 			if (x < (0-img.width) || x > (FP.width+img.width) || y < (0-img.height) || y > (FP.height+img.height)) {
 				world.remove(this);
 			}
+			
+			
 		}
 	}
 
