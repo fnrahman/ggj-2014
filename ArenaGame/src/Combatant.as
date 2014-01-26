@@ -35,6 +35,8 @@ package
 		public var currentWeaponIndex: Number; //even=swordman; odd=bowman
 		public var sword : Sword;
 		
+		public var canAttack:Boolean = true;
+		
 		public function Combatant(x:Number = 0, y:Number = 0, graphic:Graphic = null, mask:Mask = null) 
 		{
 			super(x, y, graphic, mask);
@@ -61,9 +63,13 @@ package
 			super.added();
 			this.world.add(this.sword);
 			this.sword.swinging = false;
+			this.sprMan.callback = attackCallback;
+			//this.grazeBox = new GrazeBox(this);
+			//this.world.add(this.grazeBox);
 		}
 		
-		public function hideSwordHitBox() : void {
+		public function attackCallback() : void {
+			this.canAttack = true;
 			this.sword.swinging = false;
 		}
 		

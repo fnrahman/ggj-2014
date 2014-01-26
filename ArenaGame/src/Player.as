@@ -54,15 +54,6 @@ package
 			
 		}
 		
-		override public function added():void 
-		{
-			super.added();
-			this.sprMan.callback = hideSwordHitBox;
-			
-			//this.grazeBox = new GrazeBox(this);
-			//this.world.add(this.grazeBox);
-		}
-		
 		override public function update():void 
 		{
 			if (Input.check("UP")) { y -= speed; }
@@ -82,7 +73,8 @@ package
 			}
 		
 
-			if (Input.mouseReleased) {
+			if (Input.mouseReleased && this.canAttack) {
+				canAttack = false;
 				if (currentWeaponIndex % 2 == 0) {
 					
 					sprMan.play("attack", true);
