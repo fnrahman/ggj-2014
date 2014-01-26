@@ -23,6 +23,7 @@ package
 		public var parent : Combatant;
 		
 		public var swinging : Boolean = false;
+		public var anti_type : String;
 		
 		public function Sword(parent:Combatant) 
 		{
@@ -40,7 +41,14 @@ package
 				pixelMaps[i] = new Pixelmask(hitboxMap.getBuffer(), -128, -128);
 			}
 			this.mask = pixelMaps[0];
-			type = "sword";
+			if (parent is Player) {
+				type = "sword";
+				anti_type = "enemy";
+			}
+			else {
+				type = "enemy_sword";
+				anti_type = "player";
+			}
 		}
 		
 		override public function update():void 
@@ -52,12 +60,11 @@ package
 			hitboxMap.frame = index;
 			//mask = pixelMasks[index];
 			
-			if (this.swinging && this.collide("enemy", x, y)) {
-				FP.screen.color = 0x00FF00;
+			if (this.swinging && this.collide(anti_type, x, y)) {
+				FP.console.log("Hit enemy");
+				this.swinging = false;
 			}
-			else {
-				FP.screen.color = 0xFFFFFF;
-			}
+
 			
 			
 			
