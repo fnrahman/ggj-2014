@@ -12,6 +12,7 @@ package
 		public var speed: Number;
 		private var parent:Combatant;
 		private var img:Image;
+		private var anti_type : String;
 		
 		public function Arrow(x:int, y:int , parent:Combatant)
 		{
@@ -31,6 +32,7 @@ package
 			this.layer = 10;
 			
 			type = (parent is Player) ? "arrow" : "enemy_arrow";
+			anti_type = (parent is Player) ? "enemy" : "player";
 		}
 		
 		override public function update():void 
@@ -42,7 +44,10 @@ package
 				world.remove(this);
 			}
 			
-			
+			if (collide(anti_type, x, y)) {
+				FP.console.log("Shot the enemy");
+				world.remove(this);
+			}
 		}
 	}
 

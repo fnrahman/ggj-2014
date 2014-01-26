@@ -65,11 +65,11 @@ package
 				this.swinging = false;
 			}
 			//Eventually this statement will be unnecessary
-			else if (this.type == "enemy_sword" && this.collide(anti_type, x, y)) {
+			else if (this.swinging && this.type == "enemy_sword" && this.collide(anti_type, x, y)) {
 				FP.console.log("Enemy hit you!");
 			}
 			else if (this.type == "enemy_sword" && this.collide("grazeBox", x, y)) {
-				FP.console.log("Enemy grazed you!");
+				//FP.console.log("Enemy grazed you!");
 			}
 
 			

@@ -27,7 +27,7 @@ package
 			this.x = x;
 			this.y = y;
 			this.speed = 2;
-			this.aim = 10;
+			this.aim = 0;
 
 			//(graphic as Image).centerOO();
 			//this.mask = new Pixelmask(RECTANGLE, -16, -32);
@@ -48,11 +48,13 @@ package
 				return; //player still has not been added to the player
 			}
 			seek();
+			swordAttack();
+			bowAttack();
 			sprMan.angle = this.angle;
 			//this.angle = FP.angle(x, y, target.x, target.y) + 270;
 		}
 		
-		private var seek_update = 0;
+		private var seek_update : Number = 0;
 		public function seek():void {
 			seek_update += FP.elapsed;
 			if (seek_update < 0.01) return;
@@ -63,7 +65,30 @@ package
 			this.x -= multiplier * (this.speed * Math.cos(actual_angle * Math.PI / 180));
 			this.y += multiplier * (this.speed * Math.sin(actual_angle * Math.PI / 180));
 			this.angle = actual_angle;
-			FP.console.log(actual_angle);
+			//FP.console.log(actual_angle);
+		}
+		
+		private var swing_sword : Number = 0;
+		public function swordAttack() : void {
+			swing_sword += FP.elapsed;
+			if (swing_sword < 0.5) return;
+			swing_sword = 0;
+			if (FP.distance(target.x, target.y, this.x, this.y) < 70 && this.canAttack) {
+				FP.console.log("Trying to swing my sword");
+				this.sword.swinging = true;
+				this.sprMan.play("attack", true);
+			}
+		}
+		
+		private var shoot_bow : Number = 0;
+		public function bowAttack() : void {
+			shoot_bow += FP.elapsed;
+			if (shoot_bow < 1) return;
+			shoot_bow = 0;
+			if (FP.distance(target.x, target.y, this.x, this.y) > 125) {
+				world.add(new Arrow(x, y, this));
+				sprMan.play("shoot", true);
+			}
 		}
 		
 	}
