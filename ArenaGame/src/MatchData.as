@@ -21,6 +21,12 @@ package
 			
 		}
 		
+		public static function reset() : void {
+			strength = 35;
+			speed = 3;
+			aim = 30;
+		}
+		
 	}
 
 }

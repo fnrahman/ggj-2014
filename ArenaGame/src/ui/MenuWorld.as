@@ -7,6 +7,7 @@ package ui
 		
 		public function MenuWorld() 
 		{
+			MatchData.reset();
 			FP.screen.color = 0x000000;
 			var title:Label = new Label(50, 50, "The Arena", { size:"64" } );
 			title.x = FP.halfWidth - title.halfWidth;

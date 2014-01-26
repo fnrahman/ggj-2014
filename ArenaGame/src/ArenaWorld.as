@@ -17,7 +17,10 @@ package
 			FP.screen.color = 0xC0C0C0;
 			
 			player = new Player(FP.halfWidth, FP.halfHeight);
+			trace("Good swipes: " + MatchData.successfulSwipes);
+			trace("Strength: " + MatchData.strength);
 			MatchData.strength += MatchData.successfulSwipes * 5;
+
 			player.strength = MatchData.strength;
 			
 			if (MatchData.numShots != 0) {
