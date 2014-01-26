@@ -10,7 +10,7 @@ package
 		private var enemy:Enemy;
 		private var winTimer:Number = 0;
 		private var winConstant:Number = 2;
-		public var enemyHealth: Array = new Array (100, 160, 240, 300, 350);
+		public var enemyHealth: Array = new Array (300, 460, 540, 600, 750);
 		
 		[Embed(source = "res/15_Thousand_People.mp3")] private const CROWD:Class;
 		
