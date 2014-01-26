@@ -21,21 +21,17 @@ package
 
 		[Embed(source = "res/sword_hitbox_strip.png")] private const SWORD_PIXELMAP:Class;
 		[Embed(source = "res/pullbow_strip.png")]private const Bowman: Class;
+		[Embed(source = "res/sheet.png")]private const Man: Class;
+		public var sprMan: Spritemap = new Spritemap(Man, 256, 256);
 		public var sprBowman:Spritemap = new Spritemap(Bowman, 256, 256);
 		public var speed : Number;
 
 		public var currentWeapon: Spritemap;
-		public var current: Number;
+		public var current: Number; //even=swordman; odd=bowman
 		public var hitboxMap:Spritemap = new Spritemap(SWORD_PIXELMAP, 256, 256);
 		public var pixelMaps : Array = new Array(36);
 
 		public var sword : Sword;
-
-		
-		
-
-		
-		
 
 		
 		public function Player(x:int, y:int) 
@@ -51,27 +47,21 @@ package
 
 
 			current = 0;
-			currentWeapon = sprSwordMan;
-			sprBowman.add("Shoot", [0, 1, 2, 3, 3, 2, 1, 0 ], .25, false);
-			sprSwordMan.add("attack", [0, 1, 2, 3, 3, 2, 1, 0], .25, false);
-			graphic = sprSwordMan;
+			
+			sprMan.add("shoot", [4, 5, 6, 7, 7, 6, 5, 4 ], .25, false);
+			sprMan.add("attack", [0, 1, 2, 3, 3, 2, 1, 0], .25, false);
+			sprMan.add("idleSword", [0 ], .25, false);
+			sprMan.add("idleBow", [4], .25, false);
+			
 			this.angle = 0;
 			
 			
-			graphic = sprSwordMan;
+			graphic = sprMan;
 
 			this.angle = 0;
-			
-			sprSwordMan.add("attack", [0, 1, 2, 3, 3, 2, 1, 0], .25, false);
-			graphic = sprSwordMan;
-
-			
 			this.sword = new Sword(this);
 			
-			
-		
-
-			sprSwordMan.originX = 129; sprSwordMan.originY = 142;
+			sprMan.originX = 129; sprMan.originY = 142;
 			
 			
 			//(graphic as Image).centerOO();
@@ -86,14 +76,34 @@ package
 			if (Input.check("DOWN")) { y += speed; }
 			if (Input.check("LEFT")) { x -= speed; }
 			if (Input.check("RIGHT")) { x += speed; }
-
+			if (Input.released(Key.SPACE)) {
+				current++;
+				if (current % 2 == 0)
+				{
+					sprMan.play("idleSword",false );
+				}
+				else
+				{
+					
+					sprMan.play("idleBow", false);
+				}
+			}
+		
 			
 			
 		
-			if (Input.mouseReleased) { sprSwordMan.play("attack",true) }
+			if (Input.mouseReleased) {
+				if (current % 2 == 0) {
+					
+				sprMan.play("attack", true);
+				}else 
+				{
+				sprMan.play("shoot", true);
+				}
+			}
 
 			
-			sprSwordMan.angle = FP.angle(x, y, Input.mouseX, Input.mouseY) + 270;
+			sprMan.angle = FP.angle(x, y, Input.mouseX, Input.mouseY) + 270;
 			this.angle = FP.angle(x, y, Input.mouseX, Input.mouseY) + 270;
 			
 			
