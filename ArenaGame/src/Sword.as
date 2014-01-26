@@ -34,7 +34,7 @@ package
 			this.pixelMasks = new Array(36);
 			this.parent = parent;
 			
-			hitboxMap.originX = 129; hitboxMap.originY = 142;
+			hitboxMap.originX = 121; hitboxMap.originY = 128;
 
 			for (var i:int = 0; i < 36; i++) {
 				hitboxMap.frame = i;

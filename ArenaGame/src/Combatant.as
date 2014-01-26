@@ -55,7 +55,7 @@ package
 
 			this.mask = new Pixelmask(HIT_CIRCLE, -25, -25);
 			
-			sprMan.originX = 125; sprMan.originY = 142;
+			sprMan.originX = 121; sprMan.originY = 128;
 		}
 		
 		override public function added():void 

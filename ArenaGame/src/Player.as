@@ -81,11 +81,12 @@ package
 					sword.swinging = true;
 				}else 
 				{
+					world.add(new Arrow(x, y, this));
 					sprMan.play("shoot", true);
 				}
 			}
 
-			this.angle = FP.angle(x, y, Input.mouseX, Input.mouseY) + 270;
+			this.angle = FP.angle(x, y, Input.mouseX, Input.mouseY);
 			sprMan.angle = this.angle;
 			
 			super.update();
