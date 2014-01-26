@@ -58,6 +58,7 @@ package
 			var combatant:Combatant = collide(anti_type, x, y) as Combatant;
 			if (combatant) {
 				combatant.hp -= parent.strength;
+				if (combatant.hp < 0) combatant.hp = 0;
 				world.add(new Indicator(combatant.x, combatant.y, damage));
 				FP.console.log("Shot the " + type);
 				if (parent is Player) {
