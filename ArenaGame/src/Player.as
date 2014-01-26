@@ -108,7 +108,7 @@ package
 			this.angle = FP.angle(x, y, Input.mouseX, Input.mouseY);
 			sprMan.angle = this.angle;
 			
-			FP.console.log(averageShotDistance);
+			FP.console.log(successfulSwipes);
 			
 			super.update();
 		}

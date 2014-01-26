@@ -24,12 +24,15 @@ package
 		
 		public var swinging : Boolean = false;
 		public var anti_type : String;
+		public var damage: Number;
 		
 		public function Sword(parent:Combatant) 
 		{
 			super(parent.x, parent.y);
 			this.x = parent.x;
 			this.y = parent.y;
+			
+			this.damage = parent.strength;
 
 			this.pixelMasks = new Array(36);
 			this.parent = parent;

@@ -16,6 +16,8 @@ package
 		
 		private var x_start : int, y_start : int;
 		
+		public var damage : Number;
+		
 		public function Arrow(x:int, y:int, shootAngle:Number, parent:Combatant)
 		{
 			
@@ -31,6 +33,8 @@ package
 			img.angle = currentAngle;
 			speed = 10.0;
 			this.layer = 10;
+			
+			this.damage = parent.strength * 0.33333;
 			
 			
 			
