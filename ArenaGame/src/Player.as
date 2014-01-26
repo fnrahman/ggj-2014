@@ -33,6 +33,7 @@ package
 		
 		public var grazeBox : GrazeBox;
 		
+		
 		public function Player(x:int, y:int) 
 		{
 			//aim = 20; // CHANGE THIS LATER
@@ -80,8 +81,10 @@ package
 				}
 				else
 				{
+					
 					sprMan.play("idleBow", false);
 				}
+				test = 0;
 			}
 		
 
@@ -96,7 +99,9 @@ package
 				{
 					//world.add(new Arrow(x, y, angle + ((2 * Math.random() * aim)  - aim),this));
 					sprMan.play("shoot", true);
+					test++;
 					numShots += 1;
+					
 				}
 			}
 

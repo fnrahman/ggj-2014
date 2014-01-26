@@ -36,6 +36,7 @@ package
 		public var sword : Sword;
 		
 		public var canAttack:Boolean = true;
+		public var test: Number;
 		
 		public function Combatant(x:Number = 0, y:Number = 0, graphic:Graphic = null, mask:Mask = null) 
 		{
@@ -74,7 +75,8 @@ package
 			// Check if bow
 			var ax:int = x + (101 * (Math.cos(angle * Math.PI / 180)));
 			var ay:int = y - (101 * (Math.sin(angle * Math.PI / 180)));
-			if (currentWeaponIndex % 2 != 0) {
+			if ((currentWeaponIndex % 2 != 0) && test != 0 ) {
+				
 				world.add(new Arrow(ax, ay, angle + ((2 * Math.random() * aim)  - aim),this));
 			}
 		}
