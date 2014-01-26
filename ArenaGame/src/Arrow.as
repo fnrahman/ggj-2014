@@ -14,7 +14,7 @@ package
 		private var img:Image;
 		private var anti_type : String;
 		
-		public function Arrow(x:int, y:int , parent:Combatant)
+		public function Arrow(x:int, y:int, shootAngle:Number, parent:Combatant)
 		{
 			
 			this.parent = parent;
@@ -25,8 +25,7 @@ package
 			img.originY = 49;
 			setOrigin(48, 11);
 			setHitbox(3, 3, 1, 1);
-			currentAngle = parent.angle;
-			trace("Angle = " + currentAngle);
+			currentAngle = shootAngle;
 			img.angle = currentAngle;
 			speed = 10.0;
 			this.layer = 10;
