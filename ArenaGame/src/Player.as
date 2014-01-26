@@ -13,16 +13,12 @@ package
 	
 	public class Player extends Combatant
 	{
-		[Embed(source = "res/swing.png")]private const SWORDMAN: Class;
-		public var sprSwordMan:Spritemap = new Spritemap(SWORDMAN, 256, 256);
 	
 		[Embed(source = "res/rectangle.png")] private const RECTANGLE:Class;
 
-
-		[Embed(source = "res/pullbow_strip.png")]private const Bowman: Class;
+		
 		[Embed(source = "res/sheet.png")]private const Man: Class;
 		public var sprMan: Spritemap = new Spritemap(Man, 256, 256);
-		public var sprBowman:Spritemap = new Spritemap(Bowman, 256, 256);
 
 		public var currentWeapon: Spritemap;
 		
@@ -50,7 +46,6 @@ package
 			graphic = sprMan;
 
 			this.angle = 0;
-			this.sword = new Sword(this);
 
 			
 			sprMan.originX = 129; sprMan.originY = 142;
@@ -60,7 +55,7 @@ package
 		override public function added():void 
 		{
 			super.added();
-			this.sprSwordMan.callback = hideSwordHitBox;
+			this.sprMan.callback = hideSwordHitBox;
 		}
 		
 		override public function update():void 
