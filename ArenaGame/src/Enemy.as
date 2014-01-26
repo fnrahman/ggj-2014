@@ -85,7 +85,7 @@ package
 			shoot_bow += FP.elapsed;
 			if (shoot_bow < 1) return;
 			shoot_bow = 0;
-			if (FP.distance(target.x, target.y, this.x, this.y) > 125) {
+			if (FP.distance(target.x, target.y, this.x, this.y) > 200) {
 				world.add(new Arrow(x, y, this));
 				sprMan.play("shoot", true);
 			}

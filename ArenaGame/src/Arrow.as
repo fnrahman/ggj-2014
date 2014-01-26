@@ -45,7 +45,7 @@ package
 			}
 			
 			if (collide(anti_type, x, y)) {
-				FP.console.log("Shot the enemy");
+				FP.console.log("Shot the "+type);
 				world.remove(this);
 			}
 		}
