@@ -14,7 +14,6 @@ package
 		public static var strength : Number = 35;
 		public static var speed : Number = 3;
 		public static var aim: Number = 30;
-		public static var roundNum: int = 0;
 		
 		
 		public function MatchData() 

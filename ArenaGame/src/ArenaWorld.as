@@ -30,15 +30,18 @@ package
 			player.aim = MatchData.aim;
 			MatchData.speed += MatchData.distanceMoved * .0001;
 			player.speed = MatchData.speed;
-			player.hp = enemyHealth[MatchData.roundNum];
+			player.hp = enemyHealth[Main.currentRound-1];
 			add(player);
 			
 			enemy = new Enemy(FP.halfWidth / 2, FP.halfHeight / 2); 
 			enemy.strength = MatchData.strength;
 			enemy.aim = MatchData.aim;
 			enemy.speed = MatchData.speed;
-			enemy.hp = enemyHealth[MatchData.roundNum];
+			trace("Start ROUND " + Main.currentRound);
+			enemy.hp = enemyHealth[Main.currentRound-1];
 			add(enemy);
+			
+			trace("HPs: " + enemy.hp);
 			var yourHP:HPLabel = new HPLabel(0, 0, player, "Your");
 			var cpuHP:HPLabel = new HPLabel(0, 0, enemy, "Enemy");
 			cpuHP.x = FP.width - cpuHP.width;
@@ -53,12 +56,10 @@ package
 			if (enemy.hp <= 0 ) {
 				MatchData.playerWin = true;
 				roundOver = true;
-				MatchData.roundNum++;
 			
 			} else if (player.hp <= 0) {
 				MatchData.playerWin = false;
 				roundOver = true;
-				MatchData.roundNum = 0;
 				}
 				
 			if (roundOver) {

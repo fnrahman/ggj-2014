@@ -14,7 +14,7 @@ package
 		{
 			super(832, 640, 60, true);
 			FP.world = new MenuWorld();
-			FP.console.enable();
+			//FP.console.enable();
 		}
 		
 		override public function init():void 

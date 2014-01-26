@@ -19,8 +19,9 @@ package
 				headerString = "You have survived Round " + Main.currentRound;
 				nextString = "Next Round";
 				nextFunction = function():void {
+					Main.currentRound += 1;
 					FP.world = new ArenaWorld();
-					Main.currentRound++;
+					trace("MOVE TO ROUND " + Main.currentRound);
 				}
 			} else {
 				headerString = "Game Over";
