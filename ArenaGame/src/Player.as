@@ -14,19 +14,18 @@ package
 	public class Player extends Combatant
 	{
 	
-		[Embed(source = "res/rectangle.png")] private const RECTANGLE:Class;
-
+		[Embed(source = "res/head.png")] private const HIT_CIRCLE:Class;
 		
 		[Embed(source = "res/sheet.png")]private const Man: Class;
 		public var sprMan: Spritemap = new Spritemap(Man, 256, 256);
 
 		public var currentWeapon: Spritemap;
 		
-		public var pixelMaps : Array = new Array(36);
 		
 		public function Player(x:int, y:int) 
 		{
 			super(x, y);
+			type = "player";
 			Input.define("UP", Key.UP, Key.W);
 			Input.define("DOWN", Key.DOWN, Key.S);
 			Input.define("LEFT", Key.LEFT, Key.A);
@@ -47,8 +46,9 @@ package
 
 			this.angle = 0;
 
+			this.mask = new Pixelmask(HIT_CIRCLE, -25, -25);
 			
-			sprMan.originX = 129; sprMan.originY = 142;
+			sprMan.originX = 125; sprMan.originY = 142;
 			
 		}
 		

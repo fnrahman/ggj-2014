@@ -21,8 +21,15 @@ package
 			this.graphic = new Image(RECTANGLE);
 			this.x = x;
 			this.y = y;
+
 			(graphic as Image).centerOO();
 			this.mask = new Pixelmask(RECTANGLE, -16, -32);
+		}
+		
+		override public function update():void 
+		{
+			super.update();
+			//this.angle = (this.angle + 1) % 360;
 		}
 		
 	}

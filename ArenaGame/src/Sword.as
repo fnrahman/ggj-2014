@@ -30,12 +30,12 @@ package
 			super(parent.x, parent.y);
 			this.x = parent.x;
 			this.y = parent.y;
-			//this.width = 356; this.height = 356;
+
 			this.pixelMasks = new Array(36);
 			this.parent = parent;
 			
 			hitboxMap.originX = 129; hitboxMap.originY = 142;
-			//graphic = hitboxMap;
+
 			for (var i:int = 0; i < 36; i++) {
 				hitboxMap.frame = i;
 				pixelMaps[i] = new Pixelmask(hitboxMap.getBuffer(), -128, -128);
@@ -59,10 +59,14 @@ package
 			var index : int = (parent.angle % 360) / 10;
 			hitboxMap.frame = index;
 			//mask = pixelMasks[index];
-			
-			if (this.swinging && this.collide(anti_type, x, y)) {
+
+			if (this.swinging && this.type == "sword" && this.collide(anti_type, x, y)) {
 				FP.console.log("Hit enemy");
 				this.swinging = false;
+			}
+			//Eventually this statement will be unnecessary
+			else if (this.type == "enemy_sword" && this.collide(anti_type, x, y)) {
+				FP.console.log("Enemy hit you!");
 			}
 
 			
