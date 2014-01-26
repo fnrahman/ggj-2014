@@ -60,14 +60,19 @@ package
 			hitboxMap.frame = index;
 			//mask = pixelMasks[index];
 
-			if (this.swinging && this.type == "sword" && this.collide(anti_type, x, y)) {
+			var combatant:Combatant = this.collide(anti_type, x, y) as Combatant;
+			
+			if (this.swinging && this.type == "sword" && combatant) {
 				FP.console.log("Hit enemy");
 				this.swinging = false;
 				(parent as Player).successfulSwipes += 1;
+				combatant.hp -= parent.strength;
 			}
 			//Eventually this statement will be unnecessary
-			else if (this.swinging && this.type == "enemy_sword" && this.collide(anti_type, x, y)) {
+			else if (this.swinging && this.type == "enemy_sword" && combatant) {
+				this.swinging = false;
 				FP.console.log("Enemy hit you!");
+				combatant.hp -= parent.strength;
 			}
 			else if (this.type == "enemy_sword" && this.collide("grazeBox", x, y)) {
 				//FP.console.log("Enemy grazed you!");

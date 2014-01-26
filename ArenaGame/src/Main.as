@@ -11,8 +11,9 @@ package
 		public function Main()
 		{
 			super(832, 640, 60, true);
-			FP.world = new ArenaWorld();
+			//FP.world = new ArenaWorld();
 			//FP.world = new MenuWorld();
+			FP.world = new AfterMatchWorld();
 			FP.console.enable();
 		}
 		
