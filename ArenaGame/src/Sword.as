@@ -68,6 +68,9 @@ package
 			else if (this.type == "enemy_sword" && this.collide(anti_type, x, y)) {
 				FP.console.log("Enemy hit you!");
 			}
+			else if (this.type == "enemy_sword" && this.collide("grazeBox", x, y)) {
+				FP.console.log("Enemy grazed you!");
+			}
 
 			
 			

@@ -21,11 +21,13 @@ package
 
 		public var currentWeapon: Spritemap;
 		
+		public var grazeBox : GrazeBox;
 		
 		public function Player(x:int, y:int) 
 		{
 			super(x, y);
 			type = "player";
+			name = "player";
 			Input.define("UP", Key.UP, Key.W);
 			Input.define("DOWN", Key.DOWN, Key.S);
 			Input.define("LEFT", Key.LEFT, Key.A);
@@ -56,6 +58,9 @@ package
 		{
 			super.added();
 			this.sprMan.callback = hideSwordHitBox;
+			
+			this.grazeBox = new GrazeBox(this);
+			this.world.add(this.grazeBox);
 		}
 		
 		override public function update():void 

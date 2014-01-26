@@ -7,7 +7,7 @@ package
 	
 	/**
 	 * ...
-	 * @author ...
+	 * This class is what connects the good with the bad
 	 */
 	public class Combatant extends Entity 
 	{
