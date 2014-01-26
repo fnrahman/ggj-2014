@@ -19,7 +19,7 @@ package
 	public class Combatant extends Entity 
 	{
 		//dat spritemap tho;
-		[Embed(source = "res/sheet.png")]private const Man: Class;
+		[Embed(source = "res/sheet2.png")]private const Man: Class;
 		[Embed(source = "res/head.png")] private const HIT_CIRCLE:Class;
 		public var sprMan: Spritemap = new Spritemap(Man, 256, 256);
 		
@@ -71,6 +71,12 @@ package
 		public function attackCallback() : void {
 			this.canAttack = true;
 			this.sword.swinging = false;
+			// Check if bow
+			var ax:int = x + (101 * (Math.cos(angle * Math.PI / 180)));
+			var ay:int = y - (101 * (Math.sin(angle * Math.PI / 180)));
+			if (currentWeaponIndex % 2 != 0) {
+				world.add(new Arrow(ax, ay, angle + ((2 * Math.random() * aim)  - aim),this));
+			}
 		}
 		
 	}

@@ -26,7 +26,7 @@ package
 		
 		public function Player(x:int, y:int) 
 		{
-			aim = 20; // CHANGE THIS LATER
+			//aim = 20; // CHANGE THIS LATER
 			super(x, y);
 			type = "player";
 			name = "player";
@@ -84,7 +84,7 @@ package
 				}else 
 				{
 					
-					world.add(new Arrow(x, y, angle + ((2 * Math.random() * aim)  - aim),this));
+					//world.add(new Arrow(x, y, angle + ((2 * Math.random() * aim)  - aim),this));
 					sprMan.play("shoot", true);
 				}
 			}
