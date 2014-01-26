@@ -21,10 +21,12 @@ package
 
 		//public var currentWeapon: Spritemap;
 		
+		
 		public var grazeBox : GrazeBox;
 		
 		public function Player(x:int, y:int) 
 		{
+			aim = 20; // CHANGE THIS LATER
 			super(x, y);
 			type = "player";
 			name = "player";
@@ -81,7 +83,8 @@ package
 					sword.swinging = true;
 				}else 
 				{
-					world.add(new Arrow(x, y, this));
+					
+					world.add(new Arrow(x, y, angle + ((2 * Math.random() * aim)  - aim),this));
 					sprMan.play("shoot", true);
 				}
 			}

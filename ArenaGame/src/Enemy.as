@@ -15,6 +15,8 @@ package
 		public static const SEEK : int = 0, DESTROY : int = 1;
 		
 		public var target : Player;
+		public var sword_border:Number = 160;
+		public var bow_border:Number = 300;
 		public function Enemy(x:Number=0, y:Number=0) 
 		{
 			super(x, y);
@@ -23,7 +25,7 @@ package
 			this.x = x;
 			this.y = y;
 			this.speed = 2;
-			this.aim = 0;
+			this.aim = 20;
 
 			//(graphic as Image).centerOO();
 			//this.mask = new Pixelmask(RECTANGLE, -16, -32);
@@ -55,7 +57,7 @@ package
 			swing_sword += FP.elapsed;
 			if (swing_sword < 0.5) return;
 			swing_sword = 0;
-			if (FP.distance(target.x, target.y, this.x, this.y) < 70 && this.canAttack) {
+			if (FP.distance(target.x, target.y, this.x, this.y) < sword_border && this.canAttack) {
 				FP.console.log("Trying to swing my sword");
 				this.sword.swinging = true;
 				this.sprMan.play("attack", true);
@@ -67,8 +69,8 @@ package
 			shoot_bow += FP.elapsed;
 			if (shoot_bow < 1) return;
 			shoot_bow = 0;
-			if (FP.distance(target.x, target.y, this.x, this.y) > 125) {
-				world.add(new Arrow(x, y, this));
+			if (FP.distance(target.x, target.y, this.x, this.y) > bow_border) {
+				world.add(new Arrow(x, y, angle + ((2 * Math.random() * aim)  - aim), this));
 				sprMan.play("shoot", true);
 			}
 		}
