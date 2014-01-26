@@ -14,12 +14,12 @@ package
 	public class Player extends Combatant
 	{
 	
-		[Embed(source = "res/head.png")] private const HIT_CIRCLE:Class;
+		//[Embed(source = "res/head.png")] private const HIT_CIRCLE:Class;
 		
-		[Embed(source = "res/sheet.png")]private const Man: Class;
-		public var sprMan: Spritemap = new Spritemap(Man, 256, 256);
+		//[Embed(source = "res/sheet.png")]private const Man: Class;
+		//public var sprMan: Spritemap = new Spritemap(Man, 256, 256);
 
-		public var currentWeapon: Spritemap;
+		//public var currentWeapon: Spritemap;
 		
 		
 		public function Player(x:int, y:int) 
@@ -37,18 +37,18 @@ package
 
 			currentWeaponIndex = 0;
 			
-			sprMan.add("shoot", [4, 5, 6, 7, 7, 6, 5, 4 ], .25, false);
-			sprMan.add("attack", [0, 1, 2, 3, 3, 2, 1, 0], .25, false);
-			sprMan.add("idleSword", [0 ], .25, false);
-			sprMan.add("idleBow", [4], .25, false);
+			//sprMan.add("shoot", [4, 5, 6, 7, 7, 6, 5, 4 ], .25, false);
+			//sprMan.add("attack", [0, 1, 2, 3, 3, 2, 1, 0], .25, false);
+			//sprMan.add("idleSword", [0 ], .25, false);
+			//sprMan.add("idleBow", [4], .25, false);
 			
 			graphic = sprMan;
 
-			this.angle = 0;
+			//this.angle = 0;
 
-			this.mask = new Pixelmask(HIT_CIRCLE, -25, -25);
+			//this.mask = new Pixelmask(HIT_CIRCLE, -25, -25);
 			
-			sprMan.originX = 125; sprMan.originY = 142;
+			//sprMan.originX = 125; sprMan.originY = 142;
 			
 		}
 		

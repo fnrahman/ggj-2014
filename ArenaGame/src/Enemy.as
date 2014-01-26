@@ -18,11 +18,11 @@ package
 		{
 			super(x, y);
 			type = "enemy";
-			this.graphic = new Image(RECTANGLE);
+			graphic = sprMan;
 			this.x = x;
 			this.y = y;
 
-			(graphic as Image).centerOO();
+			//(graphic as Image).centerOO();
 			this.mask = new Pixelmask(RECTANGLE, -16, -32);
 		}
 		
