@@ -20,15 +20,10 @@ package
 			MatchData.strength += MatchData.successfulSwipes * 5;
 			player.strength = MatchData.strength;
 			
-			if (MatchData.numShots != 0) {
-				MatchData.aim -= MatchData.successfulShots / (.12 * MatchData.numShots);
-				if (MatchData.aim < 2) {
-				MatchData.aim = 2;	
-				}
-			}
+			
 			
 			player.aim = MatchData.aim;
-			MatchData.speed += MatchData.distanceMoved * .0001;
+			
 			player.speed = MatchData.speed;
 			player.hp = enemyHealth[Main.currentRound-1];
 			add(player);
