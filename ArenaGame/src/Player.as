@@ -30,13 +30,6 @@ package
 		public var pixelMaps : Array = new Array(36);
 
 		public var sword : Sword;
-
-		
-		
-
-		
-		
-
 		
 		public function Player(x:int, y:int) 
 		{
@@ -67,8 +60,6 @@ package
 
 			
 			this.sword = new Sword(this);
-			
-			
 		
 
 			sprSwordMan.originX = 129; sprSwordMan.originY = 142;
@@ -76,6 +67,18 @@ package
 			
 			//(graphic as Image).centerOO();
 			
+		}
+		
+		override public function added():void 
+		{
+			super.added();
+			this.world.add(this.sword);
+			//this.sword.visible = false;
+			this.sprSwordMan.callback = hideSwordHitBox;
+		}
+		
+		public function hideSwordHitBox() {
+			this.sword.swinging = false;
 		}
 		
 		
@@ -90,7 +93,7 @@ package
 			
 			
 		
-			if (Input.mouseReleased) { sprSwordMan.play("attack",true) }
+			if (Input.mouseReleased) { sprSwordMan.play("attack", true); sword.swinging = true; }
 
 			
 			sprSwordMan.angle = FP.angle(x, y, Input.mouseX, Input.mouseY) + 270;
@@ -98,12 +101,13 @@ package
 			
 			
 			
-			if (Input.mouseReleased && sword.collide("enemy", x, y)) {
+/*			if (Input.mouseReleased && sword.collide("enemy", x, y)) {
 				FP.screen.color = 0xF0FF0F;
 			}
 			else {
 				FP.screen.color = 0xFFFFFF;
-			}
+			}*/
+			//if (sword.collide("enemy", x, y)) trace("blah");
 			
 			super.update();
 		}
