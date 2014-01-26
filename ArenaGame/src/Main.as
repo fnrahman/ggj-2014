@@ -11,6 +11,7 @@ package
 		{
 			super(832, 640, 60, true);
 			FP.world = new ArenaWorld();
+			FP.console.enable();
 		}
 		
 		override public function init():void 
