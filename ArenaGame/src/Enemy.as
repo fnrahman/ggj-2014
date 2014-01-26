@@ -25,7 +25,7 @@ package
 			this.y = y;
 
 			//(graphic as Image).centerOO();
-			this.mask = new Pixelmask(RECTANGLE, -16, -32);
+			//this.mask = new Pixelmask(RECTANGLE, -16, -32);
 		}
 		
 		override public function added():void 

@@ -59,8 +59,8 @@ package
 			super.added();
 			this.sprMan.callback = hideSwordHitBox;
 			
-			this.grazeBox = new GrazeBox(this);
-			this.world.add(this.grazeBox);
+			//this.grazeBox = new GrazeBox(this);
+			//this.world.add(this.grazeBox);
 		}
 		
 		override public function update():void 
