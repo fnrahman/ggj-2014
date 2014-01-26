@@ -8,7 +8,7 @@ package
 	import net.flashpunk.utils.Key;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Spritemap;
-	import res.Arrow;
+	
 	
 	
 	public class Player extends Combatant
@@ -32,10 +32,10 @@ package
 		public var sword : Sword;
 
 		
-		[Embed(source = "res/rectangle.png")] private const RECTANGLE:Class;
+		
 
 		
-		public var sword : Sword;
+		
 
 		
 		public function Player(x:int, y:int) 
