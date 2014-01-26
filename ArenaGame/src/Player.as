@@ -15,15 +15,22 @@ package
 	{
 		[Embed(source = "res/swing.png")]private const SWORDMAN: Class;
 		public var sprSwordMan:Spritemap = new Spritemap(SWORDMAN, 256, 256);
+	
+		[Embed(source = "res/rectangle.png")] private const RECTANGLE:Class;
+
 
 		[Embed(source = "res/sword_hitbox_strip.png")] private const SWORD_PIXELMAP:Class;
 		[Embed(source = "res/pullbow_strip.png")]private const Bowman: Class;
 		public var sprBowman:Spritemap = new Spritemap(Bowman, 256, 256);
 		public var speed : Number;
+
 		public var currentWeapon: Spritemap;
 		public var current: Number;
 		public var hitboxMap:Spritemap = new Spritemap(SWORD_PIXELMAP, 256, 256);
 		public var pixelMaps : Array = new Array(36);
+
+		public var sword : Sword;
+
 		
 		[Embed(source = "res/rectangle.png")] private const RECTANGLE:Class;
 
@@ -42,6 +49,7 @@ package
 			this.y = y;
 			speed = 5.0;
 
+
 			current = 0;
 			currentWeapon = sprSwordMan;
 			sprBowman.add("Shoot", [0, 1, 2, 3, 3, 2, 1, 0 ], .25, false);
@@ -51,6 +59,12 @@ package
 			
 			
 			graphic = sprSwordMan;
+
+			this.angle = 0;
+			
+			sprSwordMan.add("attack", [0, 1, 2, 3, 3, 2, 1, 0], .25, false);
+			graphic = sprSwordMan;
+
 			
 			this.sword = new Sword(this);
 			
